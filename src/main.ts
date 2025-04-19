@@ -1,12 +1,14 @@
 import GreeterComponent from '@/components/GreeterComponent.vue'
-import { createApp, defineComponent, h, type App } from 'vue'
+import ModalComponent from '@/components/ModalComponent.vue'
 import type {
   GreeterAPI,
   GreeterInstance,
   GreeterProps,
   GreeterWrapperInstance,
   InternalInstance,
-} from './types'
+} from '@/types'
+import { createPinia } from 'pinia'
+import { createApp, defineComponent, h, type App } from 'vue'
 
 const Greeter: GreeterAPI = {
   _instances: [],
@@ -31,7 +33,10 @@ const Greeter: GreeterAPI = {
         }
       },
       render() {
-        return h(GreeterComponent, { ...this.componentProps })
+        return h('div', [
+          h(GreeterComponent, { ...this.componentProps }),
+          h(ModalComponent)
+        ])
       },
       methods: {
         updateProps(newProps: Partial<GreeterProps>): void {
@@ -40,6 +45,8 @@ const Greeter: GreeterAPI = {
       },
     })
     const app: App = createApp(WrapperComponent)
+
+    app.use(createPinia())
 
     const instance = app.mount(mountEl) as GreeterWrapperInstance
 
