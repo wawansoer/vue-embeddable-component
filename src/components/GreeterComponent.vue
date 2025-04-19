@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { type PropType, computed } from 'vue'
+import { useModalStore } from '@/stores/modalStore'
 import type { ThemeType } from '@/types'
+import { type PropType, computed } from 'vue'
 
 const props = defineProps({
   message: String,
@@ -13,11 +14,12 @@ const props = defineProps({
 })
 
 const computedButtonLabel = computed(() => props.buttonLabel)
-
 const themeClass = computed(() => `theme-${props.theme}`)
 
+const modalStore = useModalStore()
+
 const handleClick = () => {
-  alert(props.message ?? 'No message provided')
+  modalStore.open(props.message ?? 'No message provided')
 }
 </script>
 
@@ -28,6 +30,7 @@ const handleClick = () => {
     </button>
   </div>
 </template>
+
 
 <style scoped>
 .greeter-component {
