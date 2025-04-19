@@ -19,7 +19,7 @@ const themeClass = computed(() => `theme-${props.theme}`)
 const modalStore = useModalStore()
 
 const handleClick = () => {
-  modalStore.open(props.message ?? 'No message provided')
+  modalStore.open(props.message)
 }
 </script>
 
