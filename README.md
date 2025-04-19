@@ -10,21 +10,21 @@ This project provides a reusable Vue.js component called `GreeterComponent` that
 The following diagram illustrates the application flow using Mermaid:
 
 ```mermaid
-graph LR
-    A[User interacts with external application] --> B(Mount GreeterComponent with props);
-    B --> C{Props provided?};
-    C -- Yes --> D[GreeterComponent renders with provided props];
-    C -- No --> E[GreeterComponent renders with default props];
-    D --> F(User clicks the button);
-    F --> G[handleClick function is triggered];
-    G --> H(Pinia store's open action is called with message);
-    H --> I{Message prop provided?};
-    I -- Yes --> J[Modal opens with provided message];
-    I -- No --> K[Modal opens with default message from store];
-    J --> L(User interacts with ModalComponent);
-    K --> L(User interacts with ModalComponent);
-    L --> M(ModalComponent dispatches close action to Pinia store);
-    M --> N[Modal closes];
+graph TD
+    A[User interacts with external application] --> B(Mount GreeterComponent with props)
+    B --> C{Props provided?}
+    C -- Yes --> D[GreeterComponent renders with provided props]
+    C -- No --> E[GreeterComponent renders with default props]
+    D --> F(User clicks the button)
+    F --> G[handleClick function is triggered]
+    G --> H(Pinia store's open action is called with message)
+    H --> I{Message prop provided?}
+    I -- Yes --> J[Modal opens with provided message]
+    I -- No --> K[Modal opens with default message from store]
+    J --> L(User interacts with ModalComponent)
+    K --> L(User interacts with ModalComponent)
+    L --> M(ModalComponent dispatches close action to Pinia store)
+    M --> N[Modal closes]
 ```
 
 ## Key Components
