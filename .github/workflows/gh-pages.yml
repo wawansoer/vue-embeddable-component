@@ -27,9 +27,16 @@ jobs:
       - name: Build the application
         run: bun run build
 
+      - name: Prepare deployment folder
+        run: |
+          mkdir deploy
+          cp index.html deploy/
+          mkdir -p deploy/dist
+          cp dist/greeter-component.iife.js deploy/dist/
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
+          publish_dir: ./deploy
           force_orphan: true
