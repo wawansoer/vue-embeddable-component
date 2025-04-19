@@ -4,14 +4,13 @@ on:
   push:
     branches:
       - master 
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     permissions:
       contents: write
-      
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,7 +18,7 @@ jobs:
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: latest 
+          bun-version: latest
 
       - name: Install dependencies
         run: bun install
@@ -35,4 +34,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          force_orphan: true 
+          force_orphan: true
